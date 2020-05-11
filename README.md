@@ -1,6 +1,6 @@
 # kingTest
 
-#SETUP STEPS UBUNTU 18.04.4 LTS
+# SETUP STEPS UBUNTU 18.04.4 LTS
 
 1. Nodejs and npm installation
 2. Appium installation
