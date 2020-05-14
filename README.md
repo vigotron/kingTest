@@ -30,5 +30,5 @@
 8. Create main/resource/feature folder for BDD scenarios
 9. Create main/java/Steps folder for steps definitions
 10. Create main/java/Utils package for driver & capabilities setup
-11. Create test/Apps folder to store apk resources
+11. Create Pages/Apps folder to store apk resources
 
