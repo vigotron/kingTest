@@ -2,7 +2,6 @@ package Utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.concurrent.TimeUnit;
@@ -19,13 +18,13 @@ public class InstallApk extends AppiumSetup {
             System.out.println(e.getMessage());
         }
         apkInstaller(apkWallapop);
-        assert driver.findElement(By.id("com.wallapop:id/close")).isDisplayed();
+        assert driver.findElementById("com.wallapop:id/close").isDisplayed();
     }
 
     private void apkInstaller(String apk) {
         DesiredCapabilities installWallapop = new DesiredCapabilities();
         installWallapop.setCapability(MobileCapabilityType.APP, apk);
         driver = new AndroidDriver<WebElement>(service.getUrl(), installWallapop);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 }
