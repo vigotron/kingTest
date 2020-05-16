@@ -15,7 +15,7 @@ public class LoginSteps {
         preloginPageIsOpen.loginPageIsDisplayed();
     }
 
-    @And("the user selects button Continue with Facebook")
+    @And("the user has selected Continue with Facebook")
     public void theUserSelectsButtonContinueWithFacebook() {
         Login selectFacebookLogin = new Login();
         selectFacebookLogin.selectFacebookLogin();
