@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class AppiumSetup {
 
     public static AppiumDriverLocalService service;
-    public static AndroidDriver driver;
+    public static AndroidDriver<WebElement> driver;
 
     public void init() {
 
