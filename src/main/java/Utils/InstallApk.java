@@ -4,23 +4,30 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class InstallApk extends AppiumSetup {
 
-    String apkWallapop = "/home/vigo/Documents/king_test/kingTest/src/main/java/Utils/Apks/wallapop-1-95-1.apk";
+    private final String wallapopCloseButtonId = "com.wallapop:id/close";
 
-    public void installWallapop() {
+    public void installWallapop() throws IOException {
         AppiumSetup appiumSetup = new AppiumSetup();
         try {
             appiumSetup.init();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        apkInstaller(apkWallapop);
-        assert driver.findElementById("com.wallapop:id/close").isDisplayed();
+        Properties load = new Properties();
+        load.load(new FileInputStream("env.properties"));
+        File apkWallapop = new File(load.getProperty("apksPath"), load.getProperty("wallapopApkName"));
+        apkInstaller(apkWallapop.getAbsolutePath());
+        assert driver.findElementById(wallapopCloseButtonId).isDisplayed();
     }
-
     private void apkInstaller(String apk) {
         DesiredCapabilities installWallapop = new DesiredCapabilities();
         installWallapop.setCapability(MobileCapabilityType.APP, apk);
