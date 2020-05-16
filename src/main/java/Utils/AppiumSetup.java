@@ -1,7 +1,6 @@
 package Utils;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -17,7 +16,7 @@ public class AppiumSetup {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 30);
-        caps.setCapability(AndroidMobileCapabilityType.AUTO_LAUNCH,"com.wallapop");
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.1.0");
         caps.setCapability(MobileCapabilityType.UDID, "WE004149");
