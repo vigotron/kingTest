@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Login extends AppiumSetup {
 
-    public void loginPageIsDisplayed() {
+    public void preloginPageIsOpen() {
         MobileElement facebookLoginButton = (MobileElement) driver.findElementById("com.wallapop:id/facebookButton");
         MobileElement googleLoginButton = (MobileElement) driver.findElementById("com.wallapop:id/googleButton");
         MobileElement wallapopRegisterButton = (MobileElement) driver.findElementById("com.wallapop:id/registerButton");
@@ -19,12 +19,12 @@ public class Login extends AppiumSetup {
         assert wallapopRegisterButton.isDisplayed();
     }
 
-    public void selectFacebookLogin() {
+    public void continueFacebookLogin() {
         MobileElement facebookLoginOption = (MobileElement) driver.findElementById("com.wallapop:id/facebookButton");
         facebookLoginOption.click();
     }
 
-    public void facebookUserLogin(String username, String password) {
+    public void loginWithFacebook(String username, String password) {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Button")));
 
@@ -45,7 +45,7 @@ public class Login extends AppiumSetup {
         acceptTermsOfService.click();
     }
 
-    public boolean isUserLoggedIn() {
+    public boolean userIsLoggedIn() {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.wallapop:id/wp__profile_frame__iv_profile_thumb")));
 
