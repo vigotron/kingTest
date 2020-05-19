@@ -24,7 +24,7 @@ public class Login extends AppiumSetup {
         continueWithFacebookLogin.click();
     }
     public void loginWithFacebook(String username, String password) {
-        WebDriverWait waitToDisplay = new WebDriverWait(driver, 25);
+        WebDriverWait waitToDisplay = new WebDriverWait(driver, 15);
         waitToDisplay.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Button")));
 
         List<WebElement> facebookCredentialFields = driver.findElementsByClassName("android.widget.EditText");
@@ -33,7 +33,7 @@ public class Login extends AppiumSetup {
         MobileElement facebookLoginButton = (MobileElement) driver.findElementByClassName("android.widget.Button");
         facebookLoginButton.click();
 
-        WebDriverWait waitToBeClickable = new WebDriverWait(driver, 20);
+        WebDriverWait waitToBeClickable = new WebDriverWait(driver, 15);
         waitToBeClickable.until(ExpectedConditions.elementToBeClickable(By.className("android.widget.Button")));
         MobileElement continueAsFacebookUser = (MobileElement) driver.findElementByClassName("android.widget.Button");
         continueAsFacebookUser.click();
