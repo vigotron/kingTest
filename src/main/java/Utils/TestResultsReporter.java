@@ -10,8 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 
-import static org.json.simple.JSONValue.parse;
-
 public class TestResultsReporter {
 
     public static void testResultsToJira() {
@@ -22,7 +20,6 @@ public class TestResultsReporter {
         Properties load = new Properties();
         JSONParser resultsParse = new JSONParser();
         Object obj = null;
-
         try {
             load.load(new FileInputStream("env.properties"));
         } catch (IOException e) {
@@ -54,8 +51,6 @@ public class TestResultsReporter {
         fields.put("customfield_10034", custom);
         jsonAll.put("fields", fields);
         String payload = jsonAll.toString();
-        System.out.println(payload);
-        System.out.println(jsonAll);
         return payload;
     }
 
@@ -65,26 +60,25 @@ public class TestResultsReporter {
             load.load(new FileInputStream("env.properties"));
         } catch (IOException e) {
             e.printStackTrace();
-            String apiUrl = load.getProperty("projectUrl");
-            try {
-                URL url = new URL(apiUrl);
-                HttpURLConnection request = (HttpURLConnection) url.openConnection();
-                request.setConnectTimeout(5000);
-                request.setDoOutput(true);
-                request.setDoInput(true);
-                request.setRequestMethod("PUT");
-                request.setRequestProperty("Accept", "application/json");
-                request.setRequestProperty("Content-Type", "application/json");
-                request.setRequestProperty("Authorization", load.getProperty("requestAuthHeader"));
-                OutputStreamWriter outWriter = new OutputStreamWriter(request.getOutputStream(), "UTF-8");
-                outWriter.write(resultsJsonBuilder());
-                outWriter.flush();
-                outWriter.close();
-                request.getInputStream().close();
-
-            } catch (IOException d) {
-                e.printStackTrace();
-            }
+        }
+        String apiUrl = load.getProperty("projectUrl");
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.setConnectTimeout(5000);
+            request.setDoOutput(true);
+            request.setDoInput(true);
+            request.setRequestMethod("PUT");
+            request.setRequestProperty("Accept", "application/json");
+            request.setRequestProperty("Content-Type", "application/json");
+            request.setRequestProperty("Authorization", load.getProperty("requestAuthHeader"));
+            OutputStreamWriter outWriter = new OutputStreamWriter(request.getOutputStream(), "UTF-8");
+            outWriter.write(resultsJsonBuilder());
+            outWriter.flush();
+            outWriter.close();
+            request.getInputStream().close();
+        } catch (IOException d) {
+            d.printStackTrace();
         }
     }
 }
